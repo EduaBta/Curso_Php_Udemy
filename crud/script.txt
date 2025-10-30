@@ -1,3 +1,0 @@
-create database crud_clientes 
-use crud_clientes
-
