@@ -42,14 +42,11 @@ $num_clientes = $query_clientes->num_rows;
 
                 $telefone = "Não informado";
                 if(!empty($clientes['telefone'])){
-                    $ddd = substr ($clientes['telefone'],0,2);
-                    $parte1 = substr ($clientes['telefone'],2,5);
-                    $parte2 = substr ($clientes['telefone'],7);
-                    $telefone = "($ddd) $parte1-$parte2";
+                    $telefone = formatar_telefone($clientes['telefone']);
                 }
                 $nascimento = "Não informado";
                 if(!empty($clientes['nascimento'])){
-                    $nascimento = implode('/',array_reverse(explode('-', $clientes['nascimento'])));
+                    $nascimento = formatar_data($clientes['nascimento']);
 
                 }
                 $data_cadastro = date("d/m/y H:i",strtotime($clientes['data']));
@@ -62,8 +59,8 @@ $num_clientes = $query_clientes->num_rows;
                         <td><?php echo $data_cadastro;?></td>
                         <td><?php echo $telefone; ?></td>
                         <td>
-                            <a href="editar_clientel.php?id=<?php echo $clientes['id'];?>">Editar</a>
-                            <a href="deletar_clientel.php?id=<?php echo $clientes['id'];?>">Deletar</a>
+                            <a href="editar_clientes.php?id=<?php echo $clientes['id'];?>">Editar</a>
+                            <a href="deletar_clientes.php?id=<?php echo $clientes['id'];?>">Deletar</a>
                         </td>
                     </tr>
             <?php
